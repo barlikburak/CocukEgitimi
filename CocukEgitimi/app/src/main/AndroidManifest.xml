@@ -9,6 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CocukEgitimi">
+        <activity android:name=".MevsimActivity"></activity>
+        <activity android:name=".MeslekActivity" />
+        <activity android:name=".HayvanActivity" />
+        <activity android:name=".AracActivity" />
+        <activity android:name=".AlfabeActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
