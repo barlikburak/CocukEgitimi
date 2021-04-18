@@ -9,7 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CocukEgitimi">
-        <activity android:name=".MevsimActivity"></activity>
+        <activity android:name=".SekilActivity"></activity>
+        <activity android:name=".SayiActivity" />
+        <activity android:name=".RenkActivity" />
+        <activity android:name=".MeyvesebzeActivity" />
+        <activity android:name=".MevsimActivity" />
         <activity android:name=".MeslekActivity" />
         <activity android:name=".HayvanActivity" />
         <activity android:name=".AracActivity" />
