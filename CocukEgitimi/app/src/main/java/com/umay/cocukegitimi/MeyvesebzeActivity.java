@@ -2,6 +2,7 @@ package com.umay.cocukegitimi;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Point;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.Display;
@@ -10,13 +11,21 @@ import android.widget.LinearLayout;
 
 public class MeyvesebzeActivity extends AppCompatActivity implements View.OnClickListener {
 
+    private int imageResources;
+    private String string;
     private MediaPlayer mediaPlayer;
     private boolean control;
+    private int height;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meyvesebze);
+
+        Display display = getWindowManager(). getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        height = size.y;
 
         control = true;
         setLinearLayoutAll();
@@ -31,69 +40,112 @@ public class MeyvesebzeActivity extends AppCompatActivity implements View.OnClic
             }
             switch (view.getId()) {
                 case R.id.kivi:
+                    string = "KİVİ";
+                    imageResources = R.drawable.kivi;
                     mediaPlayer = MediaPlayer.create(this,R.raw.kivi);
                     break;
                 case R.id.ananas:
+                    string = "ANANAS";
+                    imageResources = R.drawable.ananas;
                     mediaPlayer = MediaPlayer.create(this,R.raw.ananas);
                     break;
                 case R.id.armut:
+                    string = "ARMUT";
+                    imageResources = R.drawable.armut;
                     mediaPlayer = MediaPlayer.create(this,R.raw.armut);
                     break;
                 case R.id.bezelye:
+                    string = "BEZELYE";
+                    imageResources = R.drawable.bezelye;
                     mediaPlayer = MediaPlayer.create(this,R.raw.bezelye);
                     break;
                 case R.id.biber:
+                    string = "BİBER";
+                    imageResources = R.drawable.biber;
                     mediaPlayer = MediaPlayer.create(this,R.raw.biber);
                     break;
                 case R.id.cilek:
+                    string = "ÇİLEK";
+                    imageResources = R.drawable.cilek;
                     mediaPlayer = MediaPlayer.create(this,R.raw.cilek);
                     break;
                 case R.id.domates:
+                    string = "DOMATES";
+                    imageResources = R.drawable.domates;
                     mediaPlayer = MediaPlayer.create(this,R.raw.domates);
                     break;
                 case R.id.elma:
+                    string = "ELMA";
+                    imageResources = R.drawable.elma;
                     mediaPlayer = MediaPlayer.create(this,R.raw.elma);
                     break;
                 case R.id.havuc:
+                    string = "HAVUÇ";
+                    imageResources = R.drawable.havuc;
                     mediaPlayer = MediaPlayer.create(this,R.raw.havuc);
                     break;
                 case R.id.hindistanCevizi:
+                    string = "HİNDİSTAN CEVİZİ";
+                    imageResources = R.drawable.hindistan_cevizi;
                     mediaPlayer = MediaPlayer.create(this,R.raw.hindistancevizi);
                     break;
                 case R.id.kabak:
+                    string = "KABAK";
+                    imageResources = R.drawable.kabak;
                     mediaPlayer = MediaPlayer.create(this,R.raw.kabak);
                     break;
                 case R.id.karpuz:
+                    string = "KARPUZ";
+                    imageResources = R.drawable.karpuz;
                     mediaPlayer = MediaPlayer.create(this,R.raw.karpuz);
                     break;
                 case R.id.kavun:
+                    string = "KAVUN";
+                    imageResources = R.drawable.kavun;
                     mediaPlayer = MediaPlayer.create(this,R.raw.kavun);
                     break;
                 case R.id.marul:
+                    string = "MARUL";
+                    imageResources = R.drawable.marul;
                     mediaPlayer = MediaPlayer.create(this,R.raw.marul);
                     break;
                 case R.id.portakal:
+                    string = "PORTAKAL";
+                    imageResources = R.drawable.portakal;
                     mediaPlayer = MediaPlayer.create(this,R.raw.portakal);
                     break;
                 case R.id.uzum:
+                    string = "ÜZÜM";
+                    imageResources = R.drawable.uzum;
                     mediaPlayer = MediaPlayer.create(this,R.raw.uzum);
                     break;
                 case R.id.kiraz:
+                    string = "KİRAZ";
+                    imageResources = R.drawable.kiraz;
                     mediaPlayer = MediaPlayer.create(this,R.raw.kiraz);
                     break;
                 case R.id.patlican:
+                    string = "PATLICAN";
+                    imageResources = R.drawable.patlican;
                     mediaPlayer = MediaPlayer.create(this,R.raw.patlican);
                     break;
                 case R.id.limon:
+                    string = "LİMON";
+                    imageResources = R.drawable.limon;
                     mediaPlayer = MediaPlayer.create(this,R.raw.limon);
                     break;
                 case R.id.muz:
+                    string = "MUZ";
+                    imageResources = R.drawable.muz;
                     mediaPlayer = MediaPlayer.create(this,R.raw.muz);
                     break;
             }
+            final ToastLayoutActivity toastLayoutActivity = new ToastLayoutActivity(height,imageResources,string);
+            toastLayoutActivity.show(getSupportFragmentManager(),"ToastLayoutActivity");
             mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
                 public void onCompletion(MediaPlayer mediaPlayer) {
+                    toastLayoutActivity.dismiss();
                     control = true;
                 }
             });

@@ -9,6 +9,8 @@ import android.widget.LinearLayout;
 
 public class SekilActivity extends AppCompatActivity implements View.OnClickListener {
 
+    private int imageResources;
+    private String string;
     private MediaPlayer mediaPlayer;
     private boolean control;
 
@@ -30,31 +32,48 @@ public class SekilActivity extends AppCompatActivity implements View.OnClickList
             }
             switch (view.getId()) {
                 case R.id.yildiz:
+                    string = "YILDIZ";
+                    imageResources = R.drawable.yildiz;
                     mediaPlayer = MediaPlayer.create(this,R.raw.yildiz);
                     break;
                 case R.id.ucgen:
+                    string = "ÜÇGEN";
+                    imageResources = R.drawable.ucgen;
                     mediaPlayer = MediaPlayer.create(this,R.raw.ucgen);
                     break;
                 case R.id.kalp:
+                    string = "KALP";
+                    imageResources = R.drawable.kalp;
                     mediaPlayer = MediaPlayer.create(this,R.raw.kalp);
                     break;
                 case R.id.daire:
+                    string = "DAİRE";
+                    imageResources = R.drawable.daire;
                     mediaPlayer = MediaPlayer.create(this,R.raw.daire);
                     break;
                 case R.id.kare:
+                    string = "KARE";
+                    imageResources = R.drawable.kare;
                     mediaPlayer = MediaPlayer.create(this,R.raw.kare);
                     break;
                 case R.id.eskenardortgen:
+                    string = "EŞKENAR DÖRTGEN";
+                    imageResources = R.drawable.eskenardortgen;
                     mediaPlayer = MediaPlayer.create(this,R.raw.eskenardortgen);
                     break;
                 case R.id.dikdortgen:
+                    string = "DİKDÖRTGEN";
+                    imageResources = R.drawable.dikdortgen;
                     mediaPlayer = MediaPlayer.create(this,R.raw.dikdortgen);
                     break;
             }
+            final ToastLayoutActivity toastLayoutActivity = new ToastLayoutActivity(imageResources,string);
+            toastLayoutActivity.show(getSupportFragmentManager(),"ToastLayoutActivity");
             mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
                 public void onCompletion(MediaPlayer mediaPlayer) {
                     control = true;
+                    toastLayoutActivity.dismiss();
                 }
             });
             mediaPlayer.start();

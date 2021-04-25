@@ -2,13 +2,19 @@ package com.umay.cocukegitimi;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Point;
 import android.media.MediaPlayer;
+import android.os.Build;
 import android.os.Bundle;
+import android.view.Display;
 import android.view.View;
 import android.widget.Button;
 
 public class SayiActivity extends AppCompatActivity implements View.OnClickListener {
 
+    private int width;
+    private int height;
+    private Button btn;
     private MediaPlayer mediaPlayer;
     private boolean control;
 
@@ -17,6 +23,11 @@ public class SayiActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sayi);
 
+        Display display = getWindowManager(). getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        width = size.x;
+        height = size.y;
         control = true;
         setButtonAll();
     }
@@ -25,6 +36,7 @@ public class SayiActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         if(control) {
             control = false;
+            btn = new Button(getApplicationContext());
             if(mediaPlayer!=null){
                 mediaPlayer.release();
             }
@@ -63,13 +75,24 @@ public class SayiActivity extends AppCompatActivity implements View.OnClickListe
                     mediaPlayer = MediaPlayer.create(this,R.raw.on);
                     break;
             }
+            btn.setText(((Button)view).getText().toString());
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                btn.setBackground(((Button)findViewById(view.getId())).getBackground());
+            }
+            btn.setTextSize(240);
+            btn.setWidth(width);
+            btn.setHeight(height-height/5);
+            btn.setTextColor(getResources().getColor(R.color.white));
+            final ToastButtonActivity toastButtonActivity = new ToastButtonActivity(btn);
             mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
                 public void onCompletion(MediaPlayer mediaPlayer) {
                     control = true;
+                    toastButtonActivity.dismiss();
                 }
             });
             mediaPlayer.start();
+            toastButtonActivity.show(getSupportFragmentManager(),"ToastButtonActivity");
         }
     }
 

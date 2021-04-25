@@ -9,8 +9,10 @@ import android.widget.ImageView;
 
 public class MevsimActivity extends AppCompatActivity implements View.OnClickListener {
 
+    private int imageResources;
     private MediaPlayer mediaPlayer;
     private boolean control;
+    private String string;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,21 +32,32 @@ public class MevsimActivity extends AppCompatActivity implements View.OnClickLis
             }
             switch (view.getId()) {
                 case R.id.sonbahar:
+                    string = "SONBAHAR";
+                    imageResources = R.drawable.sonbahar;
                     mediaPlayer = MediaPlayer.create(this,R.raw.sonbahar);
                     break;
                 case R.id.ilkbahar:
+                    string = "İLKBAHAR";
+                    imageResources = R.drawable.ilkbahar;
                     mediaPlayer = MediaPlayer.create(this,R.raw.ilkbahar);
                     break;
                 case R.id.yaz:
+                    string = "YAZ";
+                    imageResources = R.drawable.yaz;
                     mediaPlayer = MediaPlayer.create(this,R.raw.yaz);
                     break;
                 case R.id.kis:
+                    string = "KIŞ";
+                    imageResources = R.drawable.kis;
                     mediaPlayer = MediaPlayer.create(this,R.raw.kis);
                     break;
             }
+            final ToastLayoutActivity toastLayoutActivity = new ToastLayoutActivity(imageResources,string);
+            toastLayoutActivity.show(getSupportFragmentManager(),"ToastLayoutActivity");
             mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
                 public void onCompletion(MediaPlayer mediaPlayer) {
+                    toastLayoutActivity.dismiss();
                     control = true;
                 }
             });
