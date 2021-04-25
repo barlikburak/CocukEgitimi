@@ -9,6 +9,8 @@ import android.widget.LinearLayout;
 
 public class AracActivity extends AppCompatActivity implements View.OnClickListener {
 
+    private int imageResources;
+    private String string;
     private MediaPlayer mediaPlayer;
     private boolean control;
 
@@ -30,54 +32,87 @@ public class AracActivity extends AppCompatActivity implements View.OnClickListe
             }
             switch (view.getId()) {
                 case R.id.ambulans:
+                    string = "AMBULANS";
+                    imageResources = R.drawable.ambulans;
                     mediaPlayer = MediaPlayer.create(this,R.raw.ambulans);
                     break;
                 case R.id.araba:
+                    string = "ARABA";
+                    imageResources = R.drawable.araba;
                     mediaPlayer = MediaPlayer.create(this,R.raw.araba);
                     break;
                 case R.id.bisiklet:
+                    string = "BİSİKLET";
+                    imageResources = R.drawable.bisiklet;
                     mediaPlayer = MediaPlayer.create(this,R.raw.bisiklet);
                     break;
                 case R.id.copKamyonu:
+                    string = "ÇÖP KAMYONU";
+                    imageResources = R.drawable.cop_kamyon;
                     mediaPlayer = MediaPlayer.create(this,R.raw.copkamyonu);
                     break;
                 case R.id.gemi:
+                    string = "GEMİ";
+                    imageResources = R.drawable.gemi;
                     mediaPlayer = MediaPlayer.create(this,R.raw.gemi);
                     break;
                 case R.id.helikopter:
+                    string = "HELİKOPTER";
+                    imageResources = R.drawable.helikopter;
                     mediaPlayer = MediaPlayer.create(this,R.raw.helikopter);
                     break;
                 case R.id.kamyon:
+                    string = "KAMYON";
+                    imageResources = R.drawable.kamyon;
                     mediaPlayer = MediaPlayer.create(this,R.raw.kamyon);
                     break;
                 case R.id.motosiklet:
+                    string = "MOTOSİKLET";
+                    imageResources = R.drawable.motosiklet;
                     mediaPlayer = MediaPlayer.create(this,R.raw.motosiklet);
                     break;
                 case R.id.otobus:
+                    string = "OTOBÜS";
+                    imageResources = R.drawable.otobus;
                     mediaPlayer = MediaPlayer.create(this,R.raw.otobus);
                     break;
                 case R.id.taksi:
+                    string = "TAKSİ";
+                    imageResources = R.drawable.taksi;
                     mediaPlayer = MediaPlayer.create(this,R.raw.taksi);
                     break;
                 case R.id.tren:
+                    string = "TREN";
+                    imageResources = R.drawable.tren;
                     mediaPlayer = MediaPlayer.create(this,R.raw.tren);
                     break;
                 case R.id.ucak:
+                    string = "UÇAK";
+                    imageResources = R.drawable.ucak;
                     mediaPlayer = MediaPlayer.create(this,R.raw.ucak);
                     break;
                 case R.id.tramvay:
+                    string = "TRAMVAY";
+                    imageResources = R.drawable.tramvay;
                     mediaPlayer = MediaPlayer.create(this,R.raw.tramvay);
                     break;
                 case R.id.uzayMekigi:
+                    string = "UZAY MEKİĞİ";
+                    imageResources = R.drawable.uzay_mekigi;
                     mediaPlayer = MediaPlayer.create(this,R.raw.uzaymakigi);
                     break;
                 case R.id.vinc:
+                    string = "VİNÇ";
+                    imageResources = R.drawable.vinc;
                     mediaPlayer = MediaPlayer.create(this,R.raw.vinc);
                     break;
             }
+            final ToastLayoutActivity toastLayoutActivity = new ToastLayoutActivity(imageResources,string);
+            toastLayoutActivity.show(getSupportFragmentManager(),"ToastLayoutActivity");
             mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
                 public void onCompletion(MediaPlayer mediaPlayer) {
+                    toastLayoutActivity.dismiss();
                     control = true;
                 }
             });
