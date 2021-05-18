@@ -19,3 +19,4 @@ Toplamda 9 farklı kategoride öğrenme seçeneği.
 8.Meyveler/Sebzeler
 9.Renkler
 Proje içi Görseller
+![cocukegitimi1](https://user-images.githubusercontent.com/65266211/118685802-123c6b80-b80c-11eb-9c27-88bdf6bbd943.png)
